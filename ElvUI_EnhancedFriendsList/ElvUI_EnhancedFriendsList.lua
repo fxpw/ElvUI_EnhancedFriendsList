@@ -107,7 +107,7 @@ end
 -- Name
 function EFL:Update_Name(button)
 	local isOffline = button.TYPE == "Offline" or false
-
+	if not button or not button.TYPE or not button.class or not button.nameText then return end
 	local enhancedName = (self.db[button.TYPE].enhancedName and GetClassColorHex(button.class, isOffline)..button.nameText.."|r" or button.nameText)
 	local enhancedLevel = self.db[button.TYPE].level and button.levelText and format(self.db[button.TYPE].levelText and (self.db[button.TYPE].shortLevel and L["SHORT_LEVEL_TEMPLATE"] or L["LEVEL_TEMPLATE"]) or "%s", self.db[button.TYPE].levelColor and GetLevelDiffColorHex(button.levelText, isOffline)..button.levelText.."|r" or button.levelText).." " or ""
 	local enhancedClass = self.db[button.TYPE].classText and button.class or ""
